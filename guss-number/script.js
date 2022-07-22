@@ -47,8 +47,8 @@ buttonCheck.addEventListener('click', function() {
       body.style.backgroundColor = 'red';
       score.textContent = 0;
     }   
-  } else if (guessingNumber > secretNumber) {
-    message.textContent = ('Слишком большое число');
+  } else if (guessingNumber !== secretNumber) {
+    guessingNumber > secretNumber ? message.textContent = ('Слишком большое число') : message.textContent = ('Слишком маленькое число');
     if (Number(score.textContent) > 1) {
       score.textContent = Number(score.textContent) - 1;
     } else {
@@ -56,16 +56,7 @@ buttonCheck.addEventListener('click', function() {
       body.style.backgroundColor = 'red';
       score.textContent = 0;
     }
-  } else if (guessingNumber < secretNumber) {
-    message.textContent = ('Слишком маленькое число');
-    if (Number(score.textContent) > 1) {
-      score.textContent = Number(score.textContent) - 1;
-    } else {
-      message.textContent = 'Game over';
-      body.style.backgroundColor = 'red';
-      score.textContent = 0;
-    }
-  } 
+  }
 })
 
 
