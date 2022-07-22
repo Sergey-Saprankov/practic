@@ -17,6 +17,7 @@ restart.addEventListener('click', function() {
   input.value = '';
   question.textContent = '???';
   score.textContent = 20;
+  question.style.width = '25rem';
   body.style.backgroundColor = '#000';
 })
 
