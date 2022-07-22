@@ -19,6 +19,7 @@ restart.addEventListener('click', function() {
   score.textContent = 20;
   question.style.width = '25rem';
   body.style.backgroundColor = '#000';
+  secretNumber = randomNumber();
 })
 
 
@@ -36,7 +37,6 @@ buttonCheck.addEventListener('click', function() {
     Number(bestResult.textContent) < Number(score.textContent) ? bestResult.textContent = score.textContent : bestResult.textContent;
     question.textContent = secretNumber;
     question.style.width = '50rem';
-    secretNumber = randomNumber();
     //Если игрок близок к ответу
   } else if (Math.abs(guessingNumber - secretNumber) === 1) {
     message.textContent = ('Горячо');
