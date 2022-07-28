@@ -24,26 +24,9 @@ const btnHold = document.querySelector('.btn--hold');
 
 const randomDice = () => Math.floor(Math.random() * 6) + 1;
 
-const strokeTransition = (point, currentScore, player1, player2) => {
-  let score = Number(currentScore.textContent);
-
-  if (point === 1) { 
-    player1.classList.toggle('player--active');
-    player2.classList.toggle('player--active');
-    return currentScore.textContent = 0;
-  }
-  
-  return currentScore.textContent = score + point;
-}
-
-const hold = (currentScore, pointPlayer) => {
-  btnHold.addEventListener('click', function() {
-    player1.classList.toggle('player--active');
-    player2.classList.toggle('player--active');
-    pointPlayer.textContent = Number(currentScore.textContent) + Number(pointPlayer.textContent);
-    currentScore.text = 0;
-  })
-}
+let currentScore = 0;
+let totalCurrentPlayer1 = 0;
+let totalCurrentPlayer2 = 0;
 
 
 //Начинаем новую игру
@@ -52,23 +35,52 @@ btnNewGame.addEventListener('click', function() {
   pointPlayer2.textContent = 0;
   currentScorePlayer1.textContent = 0;
   currentScorePlayer2.textContent = 0;
-  dice.src = './img/dice1.png'
+  dice.src = './img/dice1.png';
+  if (player2.classList.contains('player--active')) {
+    player1.classList.toggle('player--active');
+    player2.classList.toggle('player--active');
+  }
+    
 })
 
 btnRoll.addEventListener('click', function() {
   let point = randomDice();
-  console.log(point);
   dice.src = `./img/dice${point}.png`;
-  if (namePlayer1.closest('.player--active')) {
-    strokeTransition(point, currentScorePlayer1, player1, player2);
-    hold(currentScorePlayer1, pointPlayer1);
-  } 
-  if (namePlayer2.closest('.player--active')) {
-    strokeTransition(point, currentScorePlayer2, player1, player2);
-    hold(currentScorePlayer2, pointPlayer2);
+  //Суммируем текущие очки
+  
+  if (point !== 1) {
+    currentScore += point;
+  } else {
+    player1.classList.toggle('player--active');
+    player2.classList.toggle('player--active');
+    currentScore = 0;
+    currentScorePlayer1.textContent = 0;
+    currentScorePlayer2.textContent = 0;
+  }
+
+  if (player1.classList.contains('player--active')) {
+
+    currentScorePlayer1.textContent = currentScore;
+  } else {
+    currentScorePlayer2.textContent = currentScore;
   }
 
 });
 
 
+btnHold.addEventListener('click', function(evt) {
+  
+  if (player1.classList.contains('player--active')) {
+    totalCurrentPlayer1 = Number(currentScorePlayer1.textContent) + totalCurrentPlayer1;
+    pointPlayer1.textContent = totalCurrentPlayer1;
+    currentScorePlayer1.textContent = 0;
+  } else {
+    totalCurrentPlayer2 = Number(currentScorePlayer2.textContent) + totalCurrentPlayer2;
+    pointPlayer2.textContent = totalCurrentPlayer2;
+    currentScorePlayer2.textContent = 0;
+  }
 
+  player1.classList.toggle('player--active');
+  player2.classList.toggle('player--active');
+  currentScore = 0;
+})
