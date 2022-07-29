@@ -1,0 +1,25 @@
+.container {
+  width: 100%;
+  height: 100vh;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+.block {
+  width: 25%;
+  height: 25vh;
+}
+.red {
+  background: red;
+}
+.black {
+  background: black;
+}
+.green {
+  background: green ;
+}
+.yellow {
+  background: yellow;
+}
