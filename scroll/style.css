@@ -1,0 +1,12 @@
+.container {
+  width: 400px;
+  margin: 0 auto;
+  height: 600px;
+  overflow: scroll;
+  margin-bottom: 40px;
+}
+
+.btn {
+  display: block;
+  margin:  0 auto;
+}
