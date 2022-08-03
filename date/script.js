@@ -1,2 +1,6 @@
-const now = new Date('2022-07-29');
-console.log(now);
+function destroyer(arr, ...args) {
+    arr = arr.filter(el => ![...args].includes(el))
+    return arr;
+  }
+
+console.log(destroyer([1, 2, 3, 1, 2, 3], 2, 3));
